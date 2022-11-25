@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 
 const API_URL = "http://localhost:8080/api/auth/";
 
