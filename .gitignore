@@ -21,6 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# KOLLA PATH, ska ej upp
-user.service.js
