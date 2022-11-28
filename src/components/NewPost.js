@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
 
-const BoardUser = () => {
+// Ska bli Create New Post
+// Input form och knappar ska renderas, koppla till backend på rätt sätt
+const NewPost = () => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
@@ -24,4 +26,4 @@ const BoardUser = () => {
   );
 };
 
-export default BoardUser;
+export default NewPost;

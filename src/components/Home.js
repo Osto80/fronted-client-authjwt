@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
 
+// Ska bli All Posts
+
 const Home = () => {
   const [content, setContent] = useState("");
 

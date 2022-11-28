@@ -9,7 +9,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import BoardUser from "./components/BoardUser";
+import NewPost from "./components/NewPost";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -41,7 +41,7 @@ const App = () => {
 
           {currentUser && (
             <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
+              <Link to={"/newpost"} className="nav-link">
                 User
               </Link>
             </li>
@@ -80,12 +80,12 @@ const App = () => {
 
       <div className="container mt-3">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/user" element={<BoardUser />} />
+          <Route path="/newpost" element={<NewPost/>} />
         </Routes>
       </div>
     </div>
