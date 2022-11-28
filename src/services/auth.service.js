@@ -1,30 +1,33 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:8080/api/auth/";
+import api from "./api";
+import TokenService from "./token.service";
 
 const register = (username, email, password) => {
-  return axios.post(API_URL + "signup", {
+  return api.post("/auth/signup", {
     username,
     email,
     password
   });
 };
 
+// behålla async ??
 const login = async (username, password) => {
-  const res = await axios.post(API_URL + "signin", {
+  return api.post("/auth/signin", {
     username,
     password
+  }).then((res) => {
+    if (res.data.token) {
+      TokenService.setUser(res.data);
+    }
+
+    return res.data;
   });
-  if (res.data.token) {
-    localStorage.setItem("user", JSON.stringify(res.data));
-  }
-  return res.data;
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  TokenService.removeUser();
 };
 
+// ändra som ovan?
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
