@@ -10,9 +10,12 @@ const getAll = () => {
     return api.get("http://localhost:8080/api/posts")
 }
 
-// KOLLA DENNA SÅ DEN SKICKAR DATA 
 const remove = (id) => {
     return api.delete("http://localhost:8080/api/posts/delete/" + id)
+}
+
+const update = (updatedContent, id) => {
+    return api.put("http://localhost:8080/api/posts/update/" + id, updatedContent)
 }
     
 const PostService = {
