@@ -7,7 +7,7 @@ const create = (post) => {
 };
 
 const getAll = () => {
-    return axios.get("http://localhost:8080/api/posts")
+    return api.get("http://localhost:8080/api/posts")
 }
     
 const PostService = {
