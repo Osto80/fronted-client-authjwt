@@ -11,8 +11,8 @@ const getAll = () => {
 }
 
 // KOLLA DENNA SÅ DEN SKICKAR DATA 
-const remove = (userId, id) => {
-    return api.delete("http://localhost:8080/api/posts/delete/" + id, {data : { userId : userId }})
+const remove = (id) => {
+    return api.delete("http://localhost:8080/api/posts/delete/" + id)
 }
     
 const PostService = {

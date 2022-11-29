@@ -26,8 +26,8 @@ const Home = () => {
     );
   }, []);
 
-  const deletePost = (userId, postId) => {
-    PostService.remove(userId, postId);
+  const deletePost = (postId) => {
+    PostService.remove(postId);
   }
 
   const renderUserButtons = (userId, postId) => {
@@ -37,7 +37,7 @@ const Home = () => {
       return (
         <div className="btn-container">
           <div>
-            <button onClick={() => deletePost(userId, postId)}>Remove</button>
+            <button onClick={() => deletePost(postId)}>Remove</button>
           </div>
           <div>
             <a>Edit</a>
