@@ -10,6 +10,7 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import NewPost from "./components/NewPost";
+import EditPost from "./components/EditPost";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -89,6 +90,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="editpost" element={<EditPost />} />
           {currentUser && <Route path="/newpost" element={<NewPost/>} />}
           
         </Routes>

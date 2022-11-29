@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./home.css";
 
 import AuthService from "../services/auth.service";
@@ -9,6 +10,7 @@ import PostService from "../services/post.service";
 
 const Home = () => {
   const [content, setContent] = useState("");
+  let navigate = useNavigate();
 
   useEffect(() => {
     PostService.getAll().then(
@@ -28,7 +30,8 @@ const Home = () => {
 
   const deletePost = (postId) => {
     PostService.remove(postId);
-  }
+    window.location.reload();
+  };
 
   const renderUserButtons = (userId, postId) => {
     const currentUser = AuthService.getCurrentUser();
@@ -40,7 +43,11 @@ const Home = () => {
             <button onClick={() => deletePost(postId)}>Remove</button>
           </div>
           <div>
-            <a>Edit</a>
+            <button
+              onClick={() => navigate("/editpost", { state: { id: postId } })}
+            >
+              Edit
+            </button>
           </div>
         </div>
       );
@@ -50,17 +57,26 @@ const Home = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <div>
-          <ul>
+        <h1>Current posts:</h1>
+        <div className="posts-container">
+          <ul className="posts-list">
             {Object.values(content).map((post) => (
-              <div key={post.id} className="post-container">
+              <div key={post.id} className="post-wrapper">
                 <div className="post">
-                  <li>User-ID: {post.userId}</li>
-                  <li>Post ID: {post.id}</li>
-                  <li>{post.title}</li>
-                  <li>{post.content}</li>
+                  <li>
+                    <strong>User-ID:</strong> {post.userId}
+                  </li>
+                  <li>
+                    <strong>Post ID:</strong> {post.id}
+                  </li>
+                  <li>
+                    <strong>Title:</strong> {post.title}
+                  </li>
+                  <li>
+                    <strong>Content:</strong> {post.content}
+                  </li>
+                  {renderUserButtons(post.userId, post.id)}
                 </div>
-                {renderUserButtons(post.userId, post.id)}
               </div>
             ))}
           </ul>

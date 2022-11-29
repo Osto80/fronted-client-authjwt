@@ -1,22 +1,23 @@
 import React, { useState, useRef } from "react";
+import "./editpost.css";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import PostService from "../services/post.service";
 import AuthService from "../services/auth.service";
 
 // Ska bli Create New Post
 // Input form och knappar ska renderas, koppla till backend på rätt sätt
-const NewPost = () => {
+const EditPost = () => {
   const navigate = useNavigate();
-  
+  const location = useLocation();
+
   const form = useRef();
   const checkButton = useRef();
   
-  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
@@ -47,9 +48,9 @@ const NewPost = () => {
   };
   
   // Uppdateras för endast Content
-  const handleNewPost = (event) => {
+  const handleEditPost = (event) => {
     event.preventDefault();
-
+    
     setMessage("");
     setSuccessful(false);
     
@@ -57,14 +58,8 @@ const NewPost = () => {
 
     const currentUser = AuthService.getCurrentUser();
 
-    const newPost = {
-      title: title,
-      content: content,
-      user: currentUser.id
-    }
-
     if (checkButton.current.context._errors.length === 0) {
-      PostService.create(newPost).then((res) => {
+      PostService.update(content, location.state.id).then((res) => {
         setMessage(res.data.message);
         setSuccessful(true);
         navigate("/home");
@@ -93,15 +88,13 @@ const NewPost = () => {
         <Form onSubmit={handleEditPost} ref={form}>
           {!successful && (
             <div>
-              <div>
-                TITLE PLACEHOLDER IMPORT
-              </div>
 
               <div className="form-group">
-                <label htmlFor="content">Content</label>
+                <label class="content-label" htmlFor="content">Content</label>
                 <Input
                   type="text"
                   className="form-control"
+                  placeholder="Type to edit content..."
                   name="content"
                   value={content}
                   onChange={onChangeContent}
@@ -110,7 +103,7 @@ const NewPost = () => {
               </div>
 
               <div className="form-group">
-                <button className="btn btn-primary btn-block">Publish post</button>
+                <button className="btn btn-primary btn-block">Edit post</button>
               </div>
             </div>
           )}
