@@ -26,14 +26,18 @@ const Home = () => {
     );
   }, []);
 
-  const renderUserButtons = (userId) => {
+  const deletePost = (userId, postId) => {
+    PostService.remove(userId, postId);
+  }
+
+  const renderUserButtons = (userId, postId) => {
     const currentUser = AuthService.getCurrentUser();
 
     if (currentUser.id === userId) {
       return (
         <div className="btn-container">
           <div>
-            <a>Remove</a>
+            <button onClick={() => deletePost(userId, postId)}>Remove</button>
           </div>
           <div>
             <a>Edit</a>
@@ -49,13 +53,14 @@ const Home = () => {
         <div>
           <ul>
             {Object.values(content).map((post) => (
-              <div className="post-container">
+              <div key={post.id} className="post-container">
                 <div className="post">
-                  <li key={post.id}>{post.userId}</li>
-                  <li key={post.id}>{post.title}</li>
-                  <li key={post.id}>{post.content}</li>
+                  <li>User-ID: {post.userId}</li>
+                  <li>Post ID: {post.id}</li>
+                  <li>{post.title}</li>
+                  <li>{post.content}</li>
                 </div>
-                {renderUserButtons(post.userId)}
+                {renderUserButtons(post.userId, post.id)}
               </div>
             ))}
           </ul>
