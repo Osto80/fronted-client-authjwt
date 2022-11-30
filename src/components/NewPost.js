@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 import PostService from "../services/post.service";
 import AuthService from "../services/auth.service";
 
-// Ska bli Create New Post
-// Input form och knappar ska renderas, koppla till backend på rätt sätt
 const NewPost = () => {
   const navigate = useNavigate();
   
@@ -90,9 +88,6 @@ const NewPost = () => {
         setSuccessful(false);
       })
     }
-
-    
-
   }
 
   return (

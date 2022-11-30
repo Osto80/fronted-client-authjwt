@@ -1,8 +1,7 @@
 import React from "react";
 import AuthService from "../services/auth.service";
 
-// Överflödig , endast debug / developer
-
+// Endast debug / developer
 const Profile = () => {
   const currentUser = AuthService.getCurrentUser();
 

@@ -7,10 +7,7 @@ import CheckButton from "react-validation/build/button";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import PostService from "../services/post.service";
-import AuthService from "../services/auth.service";
 
-// Ska bli Create New Post
-// Input form och knappar ska renderas, koppla till backend på rätt sätt
 const EditPost = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,17 +44,15 @@ const EditPost = () => {
     setContent(content);
   };
   
-  // Uppdateras för endast Content
   const handleEditPost = (event) => {
+
     event.preventDefault();
     
     setMessage("");
     setSuccessful(false);
     
     form.current.validateAll();
-
-    const currentUser = AuthService.getCurrentUser();
-
+    
     if (checkButton.current.context._errors.length === 0) {
       PostService.update(content, location.state.id).then((res) => {
         setMessage(res.data.message);
@@ -71,9 +66,6 @@ const EditPost = () => {
         setSuccessful(false);
       })
     }
-
-    
-
   }
 
   return (

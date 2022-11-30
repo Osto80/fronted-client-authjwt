@@ -34,15 +34,13 @@ const App = () => {
           Mr. Postman
         </Link>
         <div className="navbar-nav mr-auto">
-
-        {currentUser && (
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li>
-        )}
-
+          {currentUser && (
+            <li className="nav-item">
+              <Link to={"/home"} className="nav-link">
+                Home
+              </Link>
+            </li>
+          )}
 
           {currentUser && (
             <li className="nav-item">
@@ -90,14 +88,12 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="editpost" element={<EditPost />} />
-          {currentUser && <Route path="/newpost" element={<NewPost/>} />}
-          
+          <Route path="/editpost" element={<EditPost />} />
+          {currentUser && <Route path="/newpost" element={<NewPost />} />}
         </Routes>
       </div>
     </div>
   );
-
 };
 
 export default App;

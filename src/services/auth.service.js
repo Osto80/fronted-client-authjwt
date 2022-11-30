@@ -9,7 +9,6 @@ const register = (username, email, password) => {
   });
 };
 
-// behålla async ??
 const login = async (username, password) => {
   return api.post("/auth/signin", {
     username,
@@ -27,7 +26,6 @@ const logout = () => {
   TokenService.removeUser();
 };
 
-// ändra som ovan?
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };

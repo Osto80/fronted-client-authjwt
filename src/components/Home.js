@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 
 import AuthService from "../services/auth.service";
-import UserService from "../services/user.service";
 import PostService from "../services/post.service";
-
-// Ska bli All Posts
 
 const Home = () => {
   const [content, setContent] = useState("");
@@ -29,8 +26,9 @@ const Home = () => {
   }, []);
 
   const deletePost = (postId) => {
-    PostService.remove(postId);
-    window.location.reload();
+    PostService.remove(postId).then(() => {
+      window.location.reload();
+    })
   };
 
   const renderUserButtons = (userId, postId) => {

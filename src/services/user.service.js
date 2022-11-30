@@ -1,6 +1,5 @@
 import api from "./api";
 
-
 const getPublicContent = () => {
     return api.get("/test/all");
 }
