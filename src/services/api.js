@@ -1,7 +1,7 @@
 import axios from "axios";
 import TokenService from "./token.service";
 
-// skapar instans för att kapa förfrågan
+// Interceptors för request och response:
 const instance = axios.create({
     baseURL: "http://localhost:8080/api",
     headers: { "Content-Type" : "application/json" },
